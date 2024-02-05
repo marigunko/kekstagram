@@ -140,12 +140,19 @@ const NAMES = [
   'The Weeknd',
 ];
 
-const createComment = () => ({
-  id: COMMENT_IDS.shift(),
-  avatar: `img/avatar-${  getRandomPositiveInteger (1, 6)  }.svg`,
-  message: getRandomArrayElement (MESSAGES),
-  name: getRandomArrayElement (NAMES),
-});
+const createComment = () => {
+  const comments = [];
+  for (let i = 1; i < getRandomPositiveInteger (1, 6); i++) {
+    const comment = {
+      id: COMMENT_IDS.shift(),
+      avatar: `img/avatar-${  getRandomPositiveInteger (1, 6)  }.svg`,
+      message: getRandomArrayElement (MESSAGES),
+      name: getRandomArrayElement (NAMES),
+    };
+    comments.push(comment);
+  }
+  return comments;
+};
 
 
 const SIMILAR_OBJECT_COUNT = 25;
@@ -161,7 +168,7 @@ const createObject = () => {
       description: getRandomArrayElement (DESCRIPTIONS),
       likes: getRandomPositiveInteger (15, 200),
       comments: createComment(),
-    }
+    };
     pictures.push(picture);
   }
   return pictures;

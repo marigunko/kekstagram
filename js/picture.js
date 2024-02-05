@@ -6,7 +6,7 @@ const pictures = document.querySelector('.pictures');
 const createPictureElement  = document.createDocumentFragment();
 
 const renderPictures = (posts) => {
-  for (const post of createObject()) {
+  for (const post of posts) {
     const picture = pictureContainer.cloneNode(true);
     picture.querySelector('.picture__img').src = post.url;
     picture.querySelector('.picture__likes').src = post.likes;

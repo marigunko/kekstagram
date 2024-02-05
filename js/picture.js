@@ -1,21 +1,23 @@
-import { similarObjects } from './data';
+import { renderFullSizePicture } from './fullsizepicture.js';
+import { createObject } from './data.js';
 
 const pictureContainer = document.querySelector('#picture').content.querySelector('.picture');
 const pictures = document.querySelector('.pictures');
 const createPictureElement  = document.createDocumentFragment();
 
-const renderPictures = () => {
-  for (const post of similarObjects()) {
+const renderPictures = (posts) => {
+  for (const post of createObject()) {
     const picture = pictureContainer.cloneNode(true);
-    const pictureImage = picture.querySelector('.picture__img');
-    const pictureLikes = picture.querySelector('.picture__likes');
-    const pictureComments = picture.querySelector('.picture__comments');
-    pictureImage.src = post.url;
-    pictureLikes.textContent = post.likes;
-    pictureComments.textContent = post.comments.length;
+    picture.querySelector('.picture__img').src = post.url;
+    picture.querySelector('.picture__likes').src = post.likes;
+    picture.querySelector('.picture__comments').src = post.comments.length;
+    picture.querySelector('.picture__img').alt = post.description;
+    picture.addEventListener('click', () => {
+      renderFullSizePicture(post);
+    });
     createPictureElement .append(picture);
   }
-  pictures.append(createPictureElement );
+  pictures.append(createPictureElement);
 };
 
 export {renderPictures};

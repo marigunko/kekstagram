@@ -151,16 +151,26 @@ const createComment = () => ({
 const SIMILAR_OBJECT_COUNT = 25;
 
 
-const createObject = () => ({
-  id: IDS.shift(),
-  url: `photos/${  URLS.shift()  }.jpg`,
-  description: getRandomArrayElement (DESCRIPTIONS),
-  likes: getRandomPositiveInteger (15, 200),
-  comments: createComment(),
-});
+
+const createObject = () => {
+  const pictures = [];
+  for (let i = 1; i <= 25; i++) {
+    const picture = {
+      id: IDS.shift(),
+      url: `photos/${  URLS.shift()  }.jpg`,
+      description: getRandomArrayElement (DESCRIPTIONS),
+      likes: getRandomPositiveInteger (15, 200),
+      comments: createComment(),
+    }
+    pictures.push(picture);
+  }
+  return pictures;
+};
 
 
-const similarObjects = Array.from({length: SIMILAR_OBJECT_COUNT}, createObject);
+// const createObject = () => {
+//   Array.from({length: SIMILAR_OBJECT_COUNT}, createObject);
+// };
 
 
-export {similarObjects};
+export {createObject};

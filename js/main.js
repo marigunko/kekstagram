@@ -1,4 +1,5 @@
-import {createObject} from './data.js';
+import {similarObjects} from './data.js';
 import {renderPictures} from'./picture.js';
 
-renderPictures(createObject());
+console.log(similarObjects);
+renderPictures();
